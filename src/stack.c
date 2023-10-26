@@ -17,7 +17,11 @@ PFNSHOW_STACK gpfnShowStack = NULL;
 bool bInitStack(PSTRUCT_STACK *ppstStack,
                 PFNSHOW_STACK pfnShowStack)
 {
-  *ppstStack = (PSTRUCT_STACK) malloc(sizeof(STRUCT_STACK));
+  if((*ppstStack = (PSTRUCT_STACK) malloc(sizeof(STRUCT_STACK))) == NULL)
+  {
+    return false;
+  }
+
   (*ppstStack)->pstTop = NULL;
   (*ppstStack)->iSize = 0;
 
@@ -52,7 +56,7 @@ void *vpPushStack(PSTRUCT_STACK *ppstStack, void *vpData)
 void *vpPopStack(PSTRUCT_STACK pstStack)
 {
   PSTRUCT_NODE pstPoppedNode = pstStack->pstTop;
-  void *vpPoppedInfo = pstPoppedNode->vpData;
+  void *vpPoppedData = pstPoppedNode->vpData;
 
   if(bStackIsEmpty(pstStack))
   {
@@ -64,7 +68,7 @@ void *vpPopStack(PSTRUCT_STACK pstStack)
 
   free(pstPoppedNode);
 
-  return vpPoppedInfo;
+  return vpPoppedData;
 }
 
 void *vpGetStackTop(PSTRUCT_STACK pstStack)
