@@ -4,6 +4,8 @@ This repository contains my personal Data Structure Library for my C/C++ project
 
 To better understand my codes, read the README.md at [this link](https://github.com/Bacagine/Bacagine)
 
+OBS: This library is still under development, for now it only has the implementation of a generic stack data structure
+
 # How to use?
 
 ## Build and Install
